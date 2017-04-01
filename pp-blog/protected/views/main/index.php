@@ -51,28 +51,11 @@
 			color: #898989;
 		}
 		
-		#div_loading {
-			z-index: 100;
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100vw;
-			height: 100vh;
-			background-color: black;
-			opacity: 0.5;
-			padding: 100px;
-			text-align: center;
-			display: none;
-		}
 	</style>
 
 </head>
 
 <body>
-
-	<div id="div_loading">
-		<img src="images/loading2.gif">
-	</div>
 
 	<p id="text_header">PP BLOG</p>
 	
@@ -218,7 +201,6 @@
 				alert('Please give some composer');
 			else {
 
-				$('#div_loading').show();
 				$.ajax({
 					url: "?r=Main/SavePost",
 					data: {
@@ -231,10 +213,12 @@
 						if( data == 1 ) {
 							getAllPosts();
 							$('#modal_new_post').modal('hide');
-							$('#div_loading').hide();
+							$('#in_post_title').val('');
+							$('#in_post_detail').val('');
+							$('#in_post_composer').val('');
+							$('#div_markdown_preview').html('');
 						}
 						else {
-							$('#div_loading').hide();
 							alert('ERROR');
 						}
 					},
