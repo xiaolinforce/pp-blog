@@ -22,9 +22,9 @@ class MainController extends Controller
 	public function actionSavePost() {
 		
 		$model = new Post();
-		$model->title = $_POST['title'];
-		$model->content = $_POST['content'];
-		$model->composer = $_POST['composer'];
+		$model->title = htmlentities($_POST['title']);
+		$model->content = htmlentities($_POST['content']);
+		$model->composer = htmlentities($_POST['composer']);
 		$model->created_date = date('Y-m-d H:i:s');
 		
 		if( $model->save() )
